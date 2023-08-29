@@ -7,7 +7,7 @@ manticore_connection = connect(host='localhost', port=9306)  # Replace with your
 manticore_cursor = manticore_connection.cursor()
 index = 'explanation_idx'
 while True:
-    query = 'SELECT CRC64(explanation), dropoff_ntaname FROM trips'
+    query = 'SELECT CRC64(explanation), explanation FROM trips'
     result = clickhouse_client.execute(query)
     for row in result:
         insert_query = f"INSERT INTO {index} (id, explanation) VALUES ({row[0]}, '{row[1]}')"
