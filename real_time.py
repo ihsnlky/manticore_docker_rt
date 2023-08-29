@@ -12,6 +12,5 @@ while True:
     for row in result:
         insert_query = f"INSERT INTO {index} (id, dropoff_ntaname) VALUES ({row[0]}, '{row[1]}')"
         manticore_cursor.execute(insert_query)
-
     manticore_connection.commit()
     time.sleep(2000)
