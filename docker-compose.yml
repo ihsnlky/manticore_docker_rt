@@ -1,0 +1,39 @@
+version: '3.9'
+services:
+    zookeeper:
+        image: confluentinc/cp-zookeeper:latest
+        environment:
+          ZOOKEEPER_CLIENT_PORT: 2181
+    clickhouse:
+        image: clickhouse/clickhouse-server:latest
+        ports:
+          - 9000:9000
+          - 9123:8123
+        ulimits:
+          nproc: 65535
+          nofile:
+            soft: 262144
+            hard: 262144
+        volumes:
+          - ./users.xml:/etc/clickhouse-server/users.xml
+    manticore:
+      container_name: manticore
+      image: manticoresearch/manticore
+      environment:
+        - EXTRA=1
+      restart: always
+      ports:
+        - 127.0.0.1:9306:9306
+        - 127.0.0.1:9308:9308
+      ulimits:
+        nproc: 65535
+        nofile:
+          soft: 65535
+          hard: 65535
+        memlock:
+          soft: -1
+          hard: -1
+      volumes:
+        - ./data:/var/lib/manticore
+        - ./manticore.conf:/etc/manticoresearch/manticore.conf
+        - ./real_time.py:/etc/manticoresearch/real_time.py
