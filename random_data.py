@@ -13,7 +13,7 @@ create_table_query = '''
 '''
 client.execute(create_table_query)
 
-num_rows = 50000 
+num_rows = 50000000
 
 for i in range(num_rows):
     random_string = ''.join(random.choice(string.ascii_letters) for _ in range(10)) 
