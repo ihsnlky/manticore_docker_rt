@@ -13,4 +13,3 @@ while True:
         insert_query = f"INSERT INTO {index} (id, explanation) VALUES ({row[0]}, '{row[1]}')"
         manticore_cursor.execute(insert_query)
     manticore_connection.commit()
-    time.sleep(2000)
