@@ -2,7 +2,7 @@ import time
 from clickhouse_driver import Client
 from pymysql import connect
 
-client = Client(host='***', port=9440, user='***', password='***', secure=True)
+client = Client(host='***', port=***, user='***', password='***', secure=True)
 manticore_connection = connect(host='localhost', port=9306) 
 manticore_cursor = manticore_connection.cursor()
 index = 'explanation_idx'
